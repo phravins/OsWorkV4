@@ -1,0 +1,20 @@
+# Elixir/Phoenix
+osworks/_build/
+osworks/deps/
+osworks/priv/static/assets/
+osworks/.elixir_ls/
+osworks/.lexical/
+osworks/erl_crash.dump
+osworks/*.ez
+
+# Node / assets
+osworks/assets/node_modules/
+
+# Environment / secrets
+osworks/.env
+*.env
+*.secret.exs
+
+# OS
+.DS_Store
+Thumbs.db
