@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OSWorks.in — Open Source for Indian SMBs</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#FDFAF6;
+  --white:#FFFFFF;
+  --green:#2D6A4F;
+  --green-pale:#EEF5F1;
+  --green-mid:#C8DAD0;
+  --gold:#C9933A;
+  --gold-pale:#FDF4E7;
+  --gold-light:#F5E6CC;
+  --text:#1C2B22;
+  --text-mid:#4A5E52;
+  --text-soft:#8A9E92;
+  --border:#DDE8E2;
+  --border-soft:#EBF2EE;
+  --shadow:0 1px 3px rgba(45,106,79,.07),0 4px 16px rgba(45,106,79,.05);
+}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:var(--text);font-size:15px;line-height:1.6}
+
+/* ── NAV ── */
+nav{background:rgba(253,250,246,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-soft);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
+.logo{font-family:'Playfair Display',serif;font-weight:700;font-size:1.2rem;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo em{color:var(--green);font-style:normal}
+.logo-badge{width:28px;height:28px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700}
+.nav-links{display:flex;gap:2px}
+.nb{padding:7px 15px;border-radius:8px;cursor:pointer;font-size:13.5px;color:var(--text-mid);font-weight:400;border:none;background:none;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s}
+.nb:hover{background:var(--green-pale);color:var(--green)}
+.nb.on{background:var(--green);color:#fff;font-weight:500}
+.nav-cta{padding:8px 20px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif}
+
+/* ── PAGES ── */
+.pg{display:none}.pg.on{display:block}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(155deg,#F0F7F3 0%,#FDFAF6 55%,#FEF8F0 100%);padding:5.5rem 2.5rem 4.5rem;text-align:center;overflow:hidden;position:relative}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:450px;height:450px;background:radial-gradient(circle,rgba(45,106,79,.05) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-80px;left:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(201,147,58,.05) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;background:var(--white);border:1px solid var(--border);color:var(--green);padding:6px 16px;border-radius:30px;font-size:12px;font-weight:600;margin-bottom:1.75rem;box-shadow:var(--shadow);letter-spacing:.3px}
+.ey-dot{width:6px;height:6px;background:var(--green);border-radius:50%}
+.hero h1{font-family:'Playfair Display',serif;font-size:3.3rem;font-weight:700;line-height:1.15;color:var(--text);letter-spacing:-1.5px;max-width:660px;margin:0 auto 1.1rem}
+.hero h1 span{color:var(--green)}
+.hero p{font-size:1rem;color:var(--text-mid);max-width:490px;margin:0 auto 2.5rem;line-height:1.75}
+.hero-btns{display:flex;gap:11px;justify-content:center}
+.btn-green{padding:12px 28px;background:var(--green);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-outline{padding:12px 28px;background:var(--white);color:var(--text);border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif}
+.stats{display:flex;justify-content:center;margin-top:4.5rem;border-top:1px solid var(--border);padding-top:3rem;max-width:600px;margin-left:auto;margin-right:auto}
+.stat{flex:1;text-align:center;padding:0 1.5rem}
+.stat+.stat{border-left:1px solid var(--border)}
+.stat h3{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:700;color:var(--green);letter-spacing:-1px}
+.stat p{font-size:11px;color:var(--text-soft);text-transform:uppercase;letter-spacing:.8px;margin-top:3px;font-weight:500}
+
+/* ── SECTIONS ── */
+.section{padding:4.5rem 2.5rem;max-width:1120px;margin:0 auto}
+.sec-label{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--green);font-weight:600;margin-bottom:.4rem}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:600;color:var(--text);letter-spacing:-.5px;line-height:1.2}
+.sec-sub{color:var(--text-soft);font-size:14px;margin-top:.4rem;max-width:440px}
+.band{background:var(--white);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);padding:4rem 2.5rem}
+.page-header{background:linear-gradient(135deg,#EEF5F1,#FDFAF6);padding:3.5rem 2.5rem 2.5rem;border-bottom:1px solid var(--border-soft)}
+.page-header .inner{max-width:1120px;margin:0 auto}
+
+/* ── GRIDS ── */
+.g3{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+
+/* ── CARDS ── */
+.card{background:var(--white);border:1px solid var(--border-soft);border-radius:16px;padding:1.75rem;box-shadow:var(--shadow);transition:border-color .2s,box-shadow .2s}
+.card:hover{border-color:var(--green-mid);box-shadow:0 4px 20px rgba(45,106,79,.1)}
+.card-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:1.1rem}
+.ci-green{background:var(--green-pale)}.ci-gold{background:var(--gold-pale)}
+.card h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.35rem;letter-spacing:-.3px}
+.card p{font-size:13px;color:var(--text-mid);line-height:1.65}
+.card-pill{display:inline-flex;align-items:center;background:var(--green-pale);color:var(--green);font-size:11px;padding:4px 12px;border-radius:20px;margin-top:.9rem;font-weight:600}
+
+/* ── FEAT CARDS ── */
+.feat{background:var(--white);border:1px solid var(--border-soft);border-radius:16px;padding:1.75rem;cursor:pointer;transition:all .2s;box-shadow:var(--shadow)}
+.feat:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:0 8px 24px rgba(45,106,79,.1)}
+.feat .fi{font-size:1.5rem;margin-bottom:.9rem}
+.feat h3{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.35rem}
+.feat p{font-size:12.5px;color:var(--text-mid);line-height:1.6}
+.feat-arrow{font-size:13px;color:var(--green);margin-top:.75rem;font-weight:600}
+
+/* ── TOOL CARDS ── */
+.tool-card{background:var(--white);border:1px solid var(--border-soft);border-radius:16px;padding:1.5rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:.85rem}
+.tool-head{display:flex;align-items:center;gap:12px}
+.tool-av{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:13px;font-weight:700;flex-shrink:0}
+.tool-meta h3{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:600;color:var(--text);letter-spacing:-.2px}
+.tool-meta p{font-size:12px;color:var(--text-soft)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:600}
+.tg{background:#E8F5ED;color:#2A6045}.tb{background:#EAF2FF;color:#1A5FAB}.ty{background:#FFF4E5;color:#9A5800}.tp{background:#F3EBF9;color:#6B27A0}
+.tool-desc{font-size:13px;color:var(--text-mid);line-height:1.65}
+.tool-foot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border-soft);padding-top:.85rem}
+.tool-foot span{font-size:12px;color:var(--text-soft)}
+.btn-sm{padding:6px 16px;background:var(--green);color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif}
+
+/* ── SEARCH ── */
+.search-wrap{display:flex;gap:.75rem;margin-bottom:2rem}
+.search-input{flex:1;padding:11px 18px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;background:var(--white);font-family:'Plus Jakarta Sans',sans-serif;outline:none;color:var(--text)}
+.search-input:focus{border-color:var(--green)}
+.search-btn{padding:11px 22px;background:var(--green);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif}
+
+/* ── FILTERS ── */
+.filter-bar{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:2rem}
+.ff{padding:6px 15px;border:1.5px solid var(--border);background:var(--white);border-radius:20px;font-size:12.5px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;color:var(--text-mid);font-weight:500;transition:all .15s}
+.ff:hover{border-color:var(--green);color:var(--green)}
+.ff.on{background:var(--green);color:#fff;border-color:var(--green)}
+
+/* ── COMMUNITY ── */
+.leaderboard{background:var(--white);border:1px solid var(--border-soft);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.lb-head{padding:1rem 1.5rem;border-bottom:1px solid var(--border-soft);font-family:'Playfair Display',serif;font-weight:600;font-size:.9rem}
+.lb-row{display:flex;align-items:center;gap:11px;padding:.85rem 1.5rem;border-bottom:1px solid var(--border-soft)}
+.lb-row:last-child{border-bottom:none}
+.lb-n{width:20px;font-size:13px;font-weight:600;color:var(--text-soft)}
+.lb-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.lb-info{flex:1}
+.lb-name{font-size:13.5px;font-weight:500;color:var(--text)}
+.lb-loc{font-size:11px;color:var(--text-soft)}
+.lb-pts{font-family:'Playfair Display',serif;font-size:13px;font-weight:600;color:var(--green)}
+.act-feed{display:flex;flex-direction:column;gap:.6rem}
+.act-item{background:var(--white);border:1px solid var(--border-soft);border-radius:12px;padding:.9rem 1.1rem;display:flex;gap:9px;align-items:start;box-shadow:var(--shadow)}
+.act-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.act-text{font-size:13px;color:var(--text-mid);line-height:1.5}
+.act-text strong{font-weight:600;color:var(--text)}
+.act-time{font-size:11px;color:var(--text-soft);margin-top:2px}
+.badge-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.badge{display:flex;align-items:center;gap:6px;background:var(--white);border:1.5px solid var(--border);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;color:var(--text-mid);box-shadow:var(--shadow)}
+.badge-dot{width:7px;height:7px;border-radius:50%}
+.notify{background:var(--gold-pale);border:1.5px solid var(--gold-light);border-radius:10px;padding:.7rem 1.2rem;margin-bottom:2rem;font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px}
+
+/* ── PROJECT CARDS ── */
+.proj-card{background:var(--white);border:1px solid var(--border-soft);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:box-shadow .2s}
+.proj-card:hover{box-shadow:0 6px 24px rgba(45,106,79,.1)}
+.proj-banner{height:148px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;letter-spacing:3px}
+.proj-body{padding:1.2rem}
+.proj-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.55rem}
+.proj-college{font-size:11px;color:var(--text-soft);text-transform:uppercase;letter-spacing:.4px;font-weight:500}
+.ss-seek{font-size:11px;padding:3px 10px;border-radius:20px;background:var(--gold-pale);color:var(--gold);font-weight:600}
+.ss-adpt{font-size:11px;padding:3px 10px;border-radius:20px;background:var(--green-pale);color:var(--green);font-weight:600}
+.proj-body h3{font-family:'Playfair Display',serif;font-size:.92rem;font-weight:600;color:var(--text);margin-bottom:.35rem}
+.proj-body p{font-size:12.5px;color:var(--text-mid);line-height:1.6}
+.proj-foot{display:flex;align-items:center;justify-content:space-between;margin-top:.9rem;padding-top:.85rem;border-top:1px solid var(--border-soft)}
+.stacks{display:flex;gap:4px;flex-wrap:wrap}
+.sk{font-size:10.5px;background:var(--cream);border:1px solid var(--border);padding:2px 8px;border-radius:5px;color:var(--text-soft)}
+.btn-interest{font-size:12px;padding:5px 14px;background:var(--green);color:#fff;border:none;border-radius:7px;cursor:pointer;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif}
+
+/* ── GUIDE CARDS ── */
+.guide-item{background:var(--white);border:1px solid var(--border-soft);border-radius:12px;padding:1rem 1.2rem;display:flex;gap:.9rem;align-items:start;box-shadow:var(--shadow)}
+.guide-num{width:33px;height:33px;background:var(--green);color:#fff;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:13px;flex-shrink:0}
+.guide-con h4{font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:2px}
+.guide-con p{font-size:12px;color:var(--text-soft);line-height:1.5}
+.guide-con em{font-size:11px;color:var(--green);font-weight:600;font-style:normal;margin-top:3px;display:block}
+
+/* ── CASE CARDS ── */
+.case-card{background:var(--white);border:1px solid var(--border-soft);border-radius:16px;padding:1.5rem;box-shadow:var(--shadow)}
+.case-top{display:flex;align-items:start;justify-content:space-between;margin-bottom:.85rem}
+.case-biz{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--text)}
+.case-loc{font-size:12px;color:var(--text-soft);margin-top:2px}
+.case-tool{font-size:12px;background:var(--green-pale);color:var(--green);padding:4px 13px;border-radius:20px;font-weight:600}
+.case-quote{font-size:13px;color:var(--text-mid);font-style:italic;line-height:1.7;border-left:3px solid var(--gold-light);padding-left:1rem;margin:.85rem 0}
+.case-stats{display:flex;gap:1.5rem;padding-top:.85rem;border-top:1px solid var(--border-soft)}
+.cs strong{display:block;font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--green)}
+.cs span{font-size:11px;color:var(--text-soft)}
+
+/* ── ABOUT ── */
+.mission{background:var(--green);border-radius:20px;padding:3rem;color:#fff;margin-bottom:1.5rem}
+.mission h2{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;margin-bottom:.9rem;letter-spacing:-.4px;line-height:1.2}
+.mission p{color:rgba(255,255,255,.72);font-size:.95rem;line-height:1.75;max-width:560px}
+.pillar-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+.pillar{background:var(--white);border:1px solid var(--border-soft);border-radius:14px;padding:1.5rem;box-shadow:var(--shadow)}
+.pillar-n{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:var(--green);opacity:.15;line-height:1}
+.pillar h3{font-family:'Playfair Display',serif;font-size:.92rem;font-weight:600;color:var(--text);margin:.45rem 0 .35rem}
+.pillar p{font-size:12.5px;color:var(--text-mid);line-height:1.6}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.25rem}
+.team-card{background:var(--white);border:1px solid var(--border-soft);border-radius:14px;padding:1.5rem;text-align:center;box-shadow:var(--shadow)}
+.team-av{width:58px;height:58px;border-radius:50%;margin:0 auto .9rem;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem}
+.team-card h4{font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:2px}
+.team-card span{font-size:11.5px;color:var(--text-soft)}
+
+/* ── UTILS ── */
+.promo-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;max-width:1120px;margin:0 auto;padding:0 2.5rem 4rem}
+.col-gap{display:flex;flex-direction:column;gap:.7rem}
+.cta-bar{background:var(--green);border-radius:14px;padding:2rem;display:flex;align-items:center;justify-content:space-between;margin-top:2.5rem}
+.cta-bar .label{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:#fff;margin-bottom:.3rem}
+.cta-bar .sub{font-size:13px;color:rgba(255,255,255,.62)}
+.cta-bar button{padding:10px 22px;background:#fff;color:var(--green);border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;white-space:nowrap;flex-shrink:0}
+.green-cta-box{background:var(--green);border-radius:18px;padding:2.25rem;color:#fff}
+.gold-cta-box{background:var(--gold-pale);border:1.5px solid var(--gold-light);border-radius:18px;padding:2.25rem}
+.cta-eyebrow{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:600;margin-bottom:.65rem}
+.cta-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;margin-bottom:.7rem;letter-spacing:-.3px;line-height:1.3}
+.cta-body{font-size:13px;line-height:1.7;margin-bottom:1.75rem}
+footer{background:var(--white);border-top:1px solid var(--border-soft);text-align:center;padding:2.5rem;font-size:13px;color:var(--text-soft)}
+footer strong{color:var(--text);font-weight:600}
+.load-more{display:block;margin:2.5rem auto 0;padding:11px 28px;background:var(--white);border:1.5px solid var(--border);border-radius:9px;font-size:13px;cursor:pointer;color:var(--text-mid);font-family:'Plus Jakarta Sans',sans-serif}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" onclick="go('home')"><div class="logo-badge">✦</div>OSWorks<em>.in</em></a>
+  <div class="nav-links">
+    <button class="nb on" onclick="go('home',this)">Home</button>
+    <button class="nb" onclick="go('dir',this)">Directory</button>
+    <button class="nb" onclick="go('comm',this)">Community</button>
+    <button class="nb" onclick="go('show',this)">Showcase</button>
+    <button class="nb" onclick="go('res',this)">Resources</button>
+    <button class="nb" onclick="go('about',this)">About</button>
+  </div>
+  <button class="nav-cta">Join Community</button>
+</nav>
+
+<!-- ═══════════════ HOME ═══════════════ -->
+<div class="pg on" id="p-home">
+  <div class="hero">
+    <div class="eyebrow"><span class="ey-dot"></span>Built for India's 63 million SMBs</div>
+    <h1>Open source tools,<br><span>made accessible</span><br>for every business</h1>
+    <p>Curated solutions, real deployments, and a developer community bridging the gap between available and accessible.</p>
+    <div class="hero-btns">
+      <button class="btn-green" onclick="go('dir',document.querySelectorAll('.nb')[1])">Explore Solutions</button>
+      <button class="btn-outline" onclick="go('comm',document.querySelectorAll('.nb')[2])">Join Community</button>
+    </div>
+    <div class="stats">
+      <div class="stat"><h3>63M+</h3><p>Indian SMBs</p></div>
+      <div class="stat"><h3>120+</h3><p>Tools reviewed</p></div>
+      <div class="stat"><h3>2,400+</h3><p>Developers</p></div>
+      <div class="stat"><h3>340+</h3><p>College projects</p></div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div style="max-width:1120px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:2.5rem">
+        <div class="sec-label" style="text-align:center">What OSWorks offers</div>
+        <div class="sec-title" style="text-align:center">Everything a business needs to go digital — for free</div>
+      </div>
+      <div class="g4">
+        <div class="feat" onclick="go('dir',document.querySelectorAll('.nb')[1])"><div class="fi">🗂️</div><h3>Solutions Directory</h3><p>120+ tools reviewed with GST compliance, Hindi UI, and SMB ratings for India.</p><div class="feat-arrow">Explore →</div></div>
+        <div class="feat" onclick="go('comm',document.querySelectorAll('.nb')[2])"><div class="fi">🤝</div><h3>Developer Community</h3><p>India-based devs contributing GST plugins, translations, and UPI integrations.</p><div class="feat-arrow">Contribute →</div></div>
+        <div class="feat" onclick="go('show',document.querySelectorAll('.nb')[3])"><div class="fi">🎓</div><h3>College Showcase</h3><p>Engineering projects seeking adoption — find one built for your exact problem.</p><div class="feat-arrow">Discover →</div></div>
+        <div class="feat" onclick="go('res',document.querySelectorAll('.nb')[4])"><div class="fi">📋</div><h3>Real Deployments</h3><p>Case studies, step-by-step guides, and verified implementation partners.</p><div class="feat-arrow">Read more →</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:1120px;margin:0 auto;padding:4rem 2.5rem">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem">
+      <div><div class="sec-label">Featured this week</div><div class="sec-title">Popular solutions</div></div>
+      <button class="load-more" style="margin:0;padding:8px 18px;font-size:13px" onclick="go('dir',document.querySelectorAll('.nb')[1])">View all 120+ →</button>
+    </div>
+    <div class="g3">
+      <div class="card"><div class="card-icon ci-green">⚙️</div><h3>ERPNext</h3><p>Full-featured ERP with GST filing, payroll, and inventory. Most adopted by Indian manufacturers and traders.</p><div class="card-pill">✓ GST Ready · Free</div></div>
+      <div class="card"><div class="card-icon ci-gold">💬</div><h3>Chatwoot</h3><p>Customer support with native WhatsApp Business API — ideal for D2C brands and local service businesses.</p><div class="card-pill">WhatsApp · Self-hosted</div></div>
+      <div class="card"><div class="card-icon ci-green">📊</div><h3>Metabase</h3><p>Business intelligence without writing SQL. Connect to your billing database and get dashboards instantly.</p><div class="card-pill">Free · No-code setup</div></div>
+    </div>
+  </div>
+
+  <div class="promo-grid">
+    <div class="green-cta-box">
+      <div class="cta-eyebrow" style="color:rgba(255,255,255,.5)">For Business Owners</div>
+      <div class="cta-title">Find the right tool<br>for your business</div>
+      <div class="cta-body" style="color:rgba(255,255,255,.62)">Answer 5 quick questions and get a personalised list — filtered for GST compliance, your industry, and your city.</div>
+      <button style="padding:10px 22px;background:#fff;color:var(--green);border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif" onclick="go('dir',document.querySelectorAll('.nb')[1])">Find my tools →</button>
+    </div>
+    <div class="gold-cta-box">
+      <div class="cta-eyebrow" style="color:var(--gold)">For Developers & Students</div>
+      <div class="cta-title" style="color:var(--text)">Contribute and build<br>your reputation</div>
+      <div class="cta-body" style="color:var(--text-mid)">Write Hindi guides, build GST plugins, submit your college project. Earn badges and connect with businesses.</div>
+      <button style="padding:10px 22px;background:var(--gold);color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif" onclick="go('comm',document.querySelectorAll('.nb')[2])">Start contributing →</button>
+    </div>
+  </div>
+  <footer><strong>OSWorks.in</strong> — Open source solutions for Indian small businesses &nbsp;·&nbsp; Built with Elixir + Phoenix</footer>
+</div>
+
+<!-- ═══════════════ DIRECTORY ═══════════════ -->
+<div class="pg" id="p-dir">
+  <div class="page-header">
+    <div class="inner">
+      <div class="sec-label">120+ tools reviewed</div>
+      <div class="sec-title" style="font-size:2rem;margin:.25rem 0 .4rem">Solutions Directory</div>
+      <p class="sec-sub">Every tool assessed for GST compliance, Hindi/regional UI, and real SMB usability in the Indian market.</p>
+    </div>
+  </div>
+  <div class="section">
+    <div class="search-wrap">
+      <input class="search-input" placeholder="Search — e.g. GST billing, inventory, payroll, WhatsApp..." type="text">
+      <button class="search-btn">Search</button>
+    </div>
+    <div class="filter-bar">
+      <button class="ff on">All tools</button>
+      <button class="ff" onclick="flt(this)">ERP & Accounting</button>
+      <button class="ff" onclick="flt(this)">CRM & Sales</button>
+      <button class="ff" onclick="flt(this)">HR & Payroll</button>
+      <button class="ff" onclick="flt(this)">Inventory</button>
+      <button class="ff" onclick="flt(this)">Communication</button>
+      <button class="ff" onclick="flt(this)">Analytics</button>
+      <button class="ff" onclick="flt(this)">✓ GST Ready</button>
+      <button class="ff" onclick="flt(this)">हिंदी UI</button>
+      <button class="ff" onclick="flt(this)">Free only</button>
+    </div>
+    <div class="g3">
+      <div class="tool-card">
+        <div class="tool-head"><div class="tool-av" style="background:#E8F5ED;color:#2A6045">ERP</div><div class="tool-meta"><h3>ERPNext</h3><p>Full ERP Suite</p></div></div>
+        <div class="tags"><span class="tag tg">✓ GST Ready</span><span class="tag tg">Free</span><span class="tag tb">हिंदी UI</span><span class="tag tp">Self-hosted</span></div>
+        <div class="tool-desc">Complete ERP with accounting, HR, inventory and GST e-invoicing. Most popular for manufacturing and trading SMBs across India.</div>
+        <div class="tool-foot"><span>⭐ 4.7 · 1,200+ Indian users</span><button class="btn-sm">View Guide</button></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-head"><div class="tool-av" style="background:#EAF2FF;color:#1A5FAB">OD</div><div class="tool-meta"><h3>Odoo</h3><p>Modular Business Suite</p></div></div>
+        <div class="tags"><span class="tag tg">✓ GST Ready</span><span class="tag ty">Freemium</span><span class="tag tp">Self-hosted</span></div>
+        <div class="tool-desc">Modular suite covering CRM, sales, e-commerce and accounting. Strong Indian GST and TDS community modules available.</div>
+        <div class="tool-foot"><span>⭐ 4.5 · 800+ Indian users</span><button class="btn-sm">View Guide</button></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-head"><div class="tool-av" style="background:#F3EBF9;color:#6B27A0">CW</div><div class="tool-meta"><h3>Chatwoot</h3><p>Customer Support</p></div></div>
+        <div class="tags"><span class="tag tg">Free</span><span class="tag tp">Self-hosted</span><span class="tag tb">WhatsApp API</span></div>
+        <div class="tool-desc">Omnichannel customer support with native WhatsApp Business integration. Ideal for D2C brands and local service businesses.</div>
+        <div class="tool-foot"><span>⭐ 4.6 · 650+ Indian users</span><button class="btn-sm">View Guide</button></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-head"><div class="tool-av" style="background:#FFF4E5;color:#9A5800">MB</div><div class="tool-meta"><h3>Metabase</h3><p>Business Analytics</p></div></div>
+        <div class="tags"><span class="tag tg">Free</span><span class="tag tp">Self-hosted</span></div>
+        <div class="tool-desc">Point-and-click business intelligence. Connect to your existing database and build sales dashboards in minutes — no SQL needed.</div>
+        <div class="tool-foot"><span>⭐ 4.4 · 420+ Indian users</span><button class="btn-sm">View Guide</button></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-head"><div class="tool-av" style="background:#E5F6F2;color:#0E7A62">BR</div><div class="tool-meta"><h3>Baserow</h3><p>No-code Database</p></div></div>
+        <div class="tags"><span class="tag tg">Free</span><span class="tag tp">Self-hosted</span></div>
+        <div class="tool-desc">Build custom databases without code. Replace Excel sheets for inventory tracking, order management, or supplier databases.</div>
+        <div class="tool-foot"><span>⭐ 4.3 · 310+ Indian users</span><button class="btn-sm">View Guide</button></div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-head"><div class="tool-av" style="background:#FFEBEB;color:#C02B2B">GC</div><div class="tool-meta"><h3>GnuCash</h3><p>Accounting & Finance</p></div></div>
+        <div class="tags"><span class="tag tg">✓ GST Ready</span><span class="tag tg">Free</span><span class="tag tb">हिंदी UI</span></div>
+        <div class="tool-desc">Lightweight desktop accounting with Indian GST community plugins. Best for sole proprietors and micro businesses.</div>
+        <div class="tool-foot"><span>⭐ 4.1 · 900+ Indian users</span><button class="btn-sm">View Guide</button></div>
+      </div>
+    </div>
+    <button class="load-more">Load 20 more tools</button>
+  </div>
+  <footer><strong>OSWorks.in</strong> — Open source solutions for Indian small businesses</footer>
+</div>
+
+<!-- ═══════════════ COMMUNITY ═══════════════ -->
+<div class="pg" id="p-comm">
+  <div class="page-header">
+    <div class="inner">
+      <div class="sec-label">2,400+ developers across India</div>
+      <div class="sec-title" style="font-size:2rem;margin:.25rem 0 .4rem">Developer Community Hub</div>
+      <p class="sec-sub">Contribute code, write Hindi guides, build GST plugins, and connect with businesses that need your expertise.</p>
+    </div>
+  </div>
+  <div class="section">
+    <div class="notify">🏆 This month: Build a UPI payment reconciliation module for ERPNext — <strong style="margin-left:4px">₹15,000 bounty open</strong></div>
+    <div class="badge-row">
+      <div class="badge"><div class="badge-dot" style="background:#2D6A4F"></div>GST Expert</div>
+      <div class="badge"><div class="badge-dot" style="background:#1A5FAB"></div>Hindi Translator</div>
+      <div class="badge"><div class="badge-dot" style="background:#6B27A0"></div>Odoo Contributor</div>
+      <div class="badge"><div class="badge-dot" style="background:#C9933A"></div>Plugin Builder</div>
+      <div class="badge"><div class="badge-dot" style="background:#C02B2B"></div>Top Reviewer</div>
+      <div class="badge"><div class="badge-dot" style="background:#0E7A62"></div>Deployment Guide</div>
+    </div>
+    <div style="display:grid;grid-template-columns:280px 1fr;gap:1.5rem;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div class="leaderboard">
+          <div class="lb-head">🏆 Top contributors · June 2025</div>
+          <div class="lb-row"><span class="lb-n">1</span><div class="lb-av" style="background:#E8F5ED;color:#2A6045">AK</div><div class="lb-info"><div class="lb-name">Arjun Kumar</div><div class="lb-loc">Bengaluru · GST Expert</div></div><div class="lb-pts">2,840</div></div>
+          <div class="lb-row"><span class="lb-n">2</span><div class="lb-av" style="background:#EAF2FF;color:#1A5FAB">PS</div><div class="lb-info"><div class="lb-name">Priya Shankar</div><div class="lb-loc">Chennai · Translator</div></div><div class="lb-pts">2,410</div></div>
+          <div class="lb-row"><span class="lb-n">3</span><div class="lb-av" style="background:#F3EBF9;color:#6B27A0">RV</div><div class="lb-info"><div class="lb-name">Rohit Verma</div><div class="lb-loc">Pune · Plugin Builder</div></div><div class="lb-pts">1,990</div></div>
+          <div class="lb-row"><span class="lb-n">4</span><div class="lb-av" style="background:#FFF4E5;color:#9A5800">NM</div><div class="lb-info"><div class="lb-name">Neha Mishra</div><div class="lb-loc">Hyderabad · Odoo</div></div><div class="lb-pts">1,760</div></div>
+          <div class="lb-row"><span class="lb-n">5</span><div class="lb-av" style="background:#FFEBEB;color:#C02B2B">SK</div><div class="lb-info"><div class="lb-name">Siddharth Kaur</div><div class="lb-loc">Delhi · ERPNext</div></div><div class="lb-pts">1,520</div></div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border-soft);border-radius:14px;padding:1.25rem;box-shadow:var(--shadow)">
+          <div style="font-weight:600;font-size:.9rem;color:var(--text);margin-bottom:.9rem">How to contribute</div>
+          <div style="display:flex;flex-direction:column;gap:.6rem">
+            <div style="display:flex;gap:10px;align-items:start"><div style="width:26px;height:26px;background:var(--green-pale);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">🌐</div><div><div style="font-size:13px;font-weight:500;color:var(--text)">Translations</div><div style="font-size:12px;color:var(--text-soft)">Hindi, Tamil, Telugu, Marathi guides</div></div></div>
+            <div style="display:flex;gap:10px;align-items:start"><div style="width:26px;height:26px;background:var(--gold-pale);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">🔌</div><div><div style="font-size:13px;font-weight:500;color:var(--text)">GST Plugins</div><div style="font-size:12px;color:var(--text-soft)">Compliance modules for open source tools</div></div></div>
+            <div style="display:flex;gap:10px;align-items:start"><div style="width:26px;height:26px;background:var(--green-pale);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">📝</div><div><div style="font-size:13px;font-weight:500;color:var(--text)">Deployment Guides</div><div style="font-size:12px;color:var(--text-soft)">Step-by-step setup documentation</div></div></div>
+            <div style="display:flex;gap:10px;align-items:start"><div style="width:26px;height:26px;background:var(--gold-pale);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">💳</div><div><div style="font-size:13px;font-weight:500;color:var(--text)">UPI Integrations</div><div style="font-size:12px;color:var(--text-soft)">Payment reconciliation modules</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-weight:600;font-size:1rem;color:var(--text);margin-bottom:.85rem">Recent community activity</div>
+        <div class="act-feed">
+          <div class="act-item"><div class="act-dot" style="background:#2D6A4F"></div><div><div class="act-text"><strong>Arjun Kumar</strong> published a GST e-invoicing plugin for ERPNext v15</div><div class="act-time">2 hours ago · ERPNext · Bengaluru</div></div></div>
+          <div class="act-item"><div class="act-dot" style="background:#1A5FAB"></div><div><div class="act-text"><strong>Priya Shankar</strong> completed Hindi translation for Chatwoot onboarding — 2,400 words</div><div class="act-time">5 hours ago · Chatwoot · Chennai</div></div></div>
+          <div class="act-item"><div class="act-dot" style="background:#C9933A"></div><div><div class="act-text"><strong>Rohit Verma</strong> opened bounty: "Razorpay reconciliation for Baserow — ₹8,000"</div><div class="act-time">1 day ago · Baserow · Pune</div></div></div>
+          <div class="act-item"><div class="act-dot" style="background:#6B27A0"></div><div><div class="act-text"><strong>Neha Mishra</strong> submitted case study: Odoo deployment for a textile distributor in Surat</div><div class="act-time">2 days ago · Odoo · Hyderabad</div></div></div>
+          <div class="act-item"><div class="act-dot" style="background:#C02B2B"></div><div><div class="act-text"><strong>Team VIT Chennai</strong> submitted college project: GST Invoice Generator with QR code</div><div class="act-time">3 days ago · Student Project</div></div></div>
+          <div class="act-item"><div class="act-dot" style="background:#0E7A62"></div><div><div class="act-text"><strong>Siddharth Kaur</strong> published: "ERPNext on ₹500/mo VPS — complete setup guide"</div><div class="act-time">4 days ago · ERPNext · Delhi</div></div></div>
+          <div class="act-item"><div class="act-dot" style="background:#2D6A4F"></div><div><div class="act-text"><strong>Megha Rathi</strong> added the first ever Marathi UI guide for GnuCash</div><div class="act-time">5 days ago · GnuCash · Nagpur</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><strong>OSWorks.in</strong> — Open source solutions for Indian small businesses</footer>
+</div>
+
+<!-- ═══════════════ SHOWCASE ═══════════════ -->
+<div class="pg" id="p-show">
+  <div class="page-header">
+    <div class="inner">
+      <div class="sec-label">340+ projects from 80+ colleges</div>
+      <div class="sec-title" style="font-size:2rem;margin:.25rem 0 .4rem">College Project Showcase</div>
+      <p class="sec-sub">Engineering projects built for real problems — connect with businesses that can adopt them.</p>
+    </div>
+  </div>
+  <div class="section">
+    <div class="filter-bar">
+      <button class="ff on">All projects</button>
+      <button class="ff" onclick="flt(this)">Seeking Adoption</button>
+      <button class="ff" onclick="flt(this)">Adopted ✓</button>
+      <button class="ff" onclick="flt(this)">Manufacturing</button>
+      <button class="ff" onclick="flt(this)">Retail & Trade</button>
+      <button class="ff" onclick="flt(this)">Agriculture</button>
+      <button class="ff" onclick="flt(this)">Healthcare</button>
+      <button class="ff" onclick="flt(this)">Sustainability</button>
+    </div>
+    <div class="g3">
+      <div class="proj-card"><div class="proj-banner" style="background:#EEF5F1;color:#2D6A4F">GST · GEN</div><div class="proj-body"><div class="proj-top"><span class="proj-college">VIT Chennai · 2024</span><span class="ss-seek">Seeking adoption</span></div><h3>GST Invoice Generator with QR</h3><p>Automated GST invoice generation with IRN and QR code for e-invoicing compliance. Exports to PDF, works offline.</p><div class="proj-foot"><div class="stacks"><span class="sk">Python</span><span class="sk">Django</span><span class="sk">React</span></div><button class="btn-interest">I need this</button></div></div></div>
+      <div class="proj-card"><div class="proj-banner" style="background:#FDF7EE;color:#C9933A">KIRANA</div><div class="proj-body"><div class="proj-top"><span class="proj-college">NIT Trichy · 2024</span><span class="ss-adpt">✓ Adopted</span></div><h3>Kirana Store Management System</h3><p>Bilingual Hindi/English inventory and billing. Credit khata and UPI QR generation for small grocery stores.</p><div class="proj-foot"><div class="stacks"><span class="sk">Flutter</span><span class="sk">Firebase</span></div><button class="btn-interest">View details</button></div></div></div>
+      <div class="proj-card"><div class="proj-banner" style="background:#EAF2FF;color:#1A5FAB">FARM · AI</div><div class="proj-body"><div class="proj-top"><span class="proj-college">COEP Pune · 2024</span><span class="ss-seek">Seeking adoption</span></div><h3>Crop Price Forecasting Dashboard</h3><p>ML-based mandi price prediction for farmers and agri-traders. Supports 12 major crops with regional market data.</p><div class="proj-foot"><div class="stacks"><span class="sk">Python</span><span class="sk">FastAPI</span><span class="sk">Streamlit</span></div><button class="btn-interest">I need this</button></div></div></div>
+      <div class="proj-card"><div class="proj-banner" style="background:#F3EBF9;color:#6B27A0">WASTE · X</div><div class="proj-body"><div class="proj-top"><span class="proj-college">IIT Bombay · 2023</span><span class="ss-adpt">✓ Adopted</span></div><h3>Industrial Waste Audit Tracker</h3><p>Tracks waste generation and regulatory compliance for small manufacturers. Generates PCB-format audit reports.</p><div class="proj-foot"><div class="stacks"><span class="sk">Elixir</span><span class="sk">Phoenix</span><span class="sk">PostgreSQL</span></div><button class="btn-interest">View details</button></div></div></div>
+      <div class="proj-card"><div class="proj-banner" style="background:#FFEBEB;color:#C02B2B">MED · LOG</div><div class="proj-body"><div class="proj-top"><span class="proj-college">Manipal · 2024</span><span class="ss-seek">Seeking adoption</span></div><h3>Medical Shop Expiry Tracker</h3><p>Automated expiry alerts and stock rotation for pharmacy shops. Integrates with billing software via CSV import.</p><div class="proj-foot"><div class="stacks"><span class="sk">Vue.js</span><span class="sk">Node.js</span><span class="sk">SQLite</span></div><button class="btn-interest">I need this</button></div></div></div>
+      <div class="proj-card"><div class="proj-banner" style="background:#FFF4E5;color:#A06010">WEAVE</div><div class="proj-body"><div class="proj-top"><span class="proj-college">DAIICT Gandhinagar · 2024</span><span class="ss-seek">Seeking adoption</span></div><h3>Textile Order & Design Tracker</h3><p>Design samples, order tracking, and dispatch for small textile manufacturers in Surat and Bhiwandi clusters.</p><div class="proj-foot"><div class="stacks"><span class="sk">React</span><span class="sk">Supabase</span></div><button class="btn-interest">I need this</button></div></div></div>
+    </div>
+    <div style="background:var(--green-pale);border:1.5px solid var(--green-mid);border-radius:14px;padding:1.75rem;margin-top:2rem;display:flex;align-items:center;justify-content:space-between">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-weight:600;font-size:1rem;color:var(--text);margin-bottom:.25rem">Are you an engineering student?</div>
+        <div style="font-size:13px;color:var(--text-soft)">Submit your final year project and let real businesses discover it. Get an OSWorks verified certificate.</div>
+      </div>
+      <button class="btn-green">Submit your project →</button>
+    </div>
+  </div>
+  <footer><strong>OSWorks.in</strong> — Open source solutions for Indian small businesses</footer>
+</div>
+
+<!-- ═══════════════ RESOURCES ═══════════════ -->
+<div class="pg" id="p-res">
+  <div class="page-header">
+    <div class="inner">
+      <div class="sec-label">Practical implementation support</div>
+      <div class="sec-title" style="font-size:2rem;margin:.25rem 0 .4rem">Resources & Deployments</div>
+      <p class="sec-sub">Real case studies, step-by-step guides, and deployment support tailored for Indian SMBs.</p>
+    </div>
+  </div>
+  <div class="section">
+    <div class="g2">
+      <div>
+        <div class="sec-label" style="margin-bottom:.9rem">Deployment guides</div>
+        <div class="col-gap">
+          <div class="guide-item"><div class="guide-num">01</div><div class="guide-con"><h4>ERPNext: Complete GST setup for Indian businesses</h4><p>Configure GSTIN, HSN codes, e-invoicing IRN, and GSTR reports</p><em>🕐 45 min · Beginner-friendly</em></div></div>
+          <div class="guide-item"><div class="guide-num">02</div><div class="guide-con"><h4>Chatwoot + WhatsApp Business API on ₹500/mo</h4><p>Self-host Chatwoot with 360dialog WhatsApp on a budget VPS in India</p><em>🕐 90 min · Intermediate</em></div></div>
+          <div class="guide-item"><div class="guide-num">03</div><div class="guide-con"><h4>Odoo 17: UPI payment reconciliation module</h4><p>Automate UPI transaction matching in Odoo's accounting module</p><em>🕐 60 min · Intermediate</em></div></div>
+          <div class="guide-item"><div class="guide-num">04</div><div class="guide-con"><h4>Metabase: Sales dashboard for kirana stores</h4><p>Connect Metabase to your billing database and build live dashboards</p><em>🕐 30 min · Beginner-friendly</em></div></div>
+          <div class="guide-item"><div class="guide-num">05</div><div class="guide-con"><h4>Baserow: Replace Excel for inventory management</h4><p>Migrate from Excel to a self-hosted no-code database in a single day</p><em>🕐 20 min · Beginner-friendly</em></div></div>
+          <div class="guide-item"><div class="guide-num">06</div><div class="guide-con"><h4>ERPNext: Multi-branch setup for retail chains</h4><p>Configure ERPNext for businesses with multiple shop locations</p><em>🕐 2 hrs · Advanced</em></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="sec-label" style="margin-bottom:.9rem">Real deployment case studies</div>
+        <div class="col-gap">
+          <div class="case-card">
+            <div class="case-top"><div><div class="case-biz">Sharma Textiles</div><div class="case-loc">📍 Surat, Gujarat · 35 employees</div></div><div class="case-tool">ERPNext</div></div>
+            <div class="case-quote">"We were spending ₹40,000 per year on Tally licenses. ERPNext handles our GST, payroll, and inventory — and now we spend nothing on software."</div>
+            <div class="case-stats"><div class="cs"><strong>₹0</strong><span>Monthly software cost</span></div><div class="cs"><strong>6 weeks</strong><span>Time to deploy</span></div><div class="cs"><strong>3 hrs</strong><span>Saved on GST monthly</span></div></div>
+          </div>
+          <div class="case-card">
+            <div class="case-top"><div><div class="case-biz">Rathore Auto Parts</div><div class="case-loc">📍 Jaipur, Rajasthan · 12 employees</div></div><div class="case-tool">Baserow + Metabase</div></div>
+            <div class="case-quote">"Our inventory was spread across six Excel files. Baserow gave us a proper database in two days, and Metabase shows us exactly what's selling."</div>
+            <div class="case-stats"><div class="cs"><strong>2 days</strong><span>Setup time</span></div><div class="cs"><strong>18%</strong><span>Reduction in dead stock</span></div><div class="cs"><strong>Free</strong><span>Total software cost</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cta-bar">
+      <div><div class="label">Need deployment help?</div><div class="sub">Connect with a verified implementation partner in your city — vetted by the OSWorks community.</div></div>
+      <button>Find a partner →</button>
+    </div>
+  </div>
+  <footer><strong>OSWorks.in</strong> — Open source solutions for Indian small businesses</footer>
+</div>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<div class="pg" id="p-about">
+  <div class="section">
+    <div class="mission">
+      <div style="font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:600;margin-bottom:.65rem">Our mission</div>
+      <h2>Closing the gap between<br>available and accessible</h2>
+      <p>India has 63 million small and medium businesses. Most can't afford expensive proprietary software, but world-class open-source solutions exist. The gap isn't software — it's access, language, compliance, and trust. OSWorks bridges that gap.</p>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar"><div class="pillar-n">01</div><h3>Solutions Directory</h3><p>Every open-source business tool reviewed in the Indian context — GST compliance, Hindi UI, SMB usability, and honest assessments.</p></div>
+      <div class="pillar"><div class="pillar-n">02</div><h3>Developer Community</h3><p>India-based developers contributing code, translations, and integrations. Reputation system, bounties, and freelance connections.</p></div>
+      <div class="pillar"><div class="pillar-n">03</div><h3>College Showcase</h3><p>Engineering projects that never saw the light of day — now connected with the businesses that could actually use them.</p></div>
+      <div class="pillar"><div class="pillar-n">04</div><h3>Real Deployments</h3><p>Not just documentation — actual case studies, verified guides, and implementation partners who've done it before.</p></div>
+    </div>
+    <div style="margin-top:2.5rem">
+      <div class="sec-label" style="margin-bottom:1.1rem">The team</div>
+      <div class="team-grid">
+        <div class="team-card"><div class="team-av" style="background:var(--green);color:#fff">OS</div><h4>OSWorks Core</h4><span>Platform & Vision</span></div>
+        <div class="team-card"><div class="team-av" style="background:#EAF2FF;color:#1A5FAB">RC</div><h4>Riya Chakraborty</h4><span>Community · Kolkata</span></div>
+        <div class="team-card"><div class="team-av" style="background:#E8F5ED;color:#2A6045">KN</div><h4>Karthik Nair</h4><span>Tech Lead · Kochi</span></div>
+        <div class="team-card"><div class="team-av" style="background:#FFF4E5;color:#9A5800">AM</div><h4>Ananya Mehta</h4><span>Content · Ahmedabad</span></div>
+      </div>
+    </div>
+    <div style="margin-top:2.5rem;background:var(--white);border:1px solid var(--border-soft);border-radius:16px;padding:2.5rem;text-align:center;box-shadow:var(--shadow)">
+      <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:var(--text);margin-bottom:.45rem">Built in public, for India</div>
+      <p style="color:var(--text-soft);font-size:14px;max-width:420px;margin:0 auto 1.75rem;line-height:1.7">OSWorks.in is built with Elixir + Phoenix, fully open source on GitHub. Every contribution is welcome.</p>
+      <div style="display:flex;gap:.75rem;justify-content:center">
+        <button class="btn-green">View on GitHub →</button>
+        <button class="btn-outline">FOSS United profile</button>
+      </div>
+    </div>
+  </div>
+  <footer><strong>OSWorks.in</strong> — Open source solutions for Indian small businesses &nbsp;·&nbsp; Built with Elixir + Phoenix</footer>
+</div>
+
+<script>
+function go(n,btn){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.getElementById('p-'+n).classList.add('on');
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  if(btn){btn.classList.add('on')}
+  else{
+    var m={home:0,dir:1,comm:2,show:3,res:4,about:5};
+    var i=m[n];
+    if(i!=null)document.querySelectorAll('.nb')[i].classList.add('on');
+  }
+  window.scrollTo(0,0);
+}
+function flt(b){
+  document.querySelectorAll('.ff').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+}
+</script>
+</body>
+</html>
