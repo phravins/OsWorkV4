@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: phravin
+      POSTGRES_DB: osworks_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  web:
+    image: elixir:latest
+    depends_on:
+      - db
+    environment:
+      # Tell the elixir container to look for the DB in the 'db' service
+      - DB_HOST=db
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    volumes:
+      - ./osworks:/app
+    working_dir: /app
+    ports:
+      - "4000:4000"
+    command: bash -c "mix local.hex --force && mix local.rebar --force && mix setup && mix phx.server"
+
+volumes:
+  postgres_data:
